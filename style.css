@@ -1,0 +1,135 @@
+/* Reset & Basic Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+/* Background dengan Efek 3D Ken Burns */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: kenBurns 20s infinite alternate ease-in-out;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Kontainer Utama - Responsif */
+.invitation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Layout Konten */
+.hero {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Tipografi */
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.divider {
+    width: 100px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 auto 30px auto;
+}
+
+.quote {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.verse {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Animasi Halus (Smooth Transitions) */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Keyframes untuk Efek Kamera 3D */
+@keyframes kenBurns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+/* Responsif untuk Layar HP */
+@media (max-width: 600px) {
+    .title { font-size: 2.2rem; }
+    .quote { font-size: 1.5rem; }
+    .hero {
+        padding: 30px 15px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+}
