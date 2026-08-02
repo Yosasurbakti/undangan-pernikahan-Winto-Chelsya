@@ -1,43 +1,1528 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
+    <!-- =======================================================
+         PREMIUM WEDDING INVITATION
+         Winto & Chelsya
+         Version : 1.0
+    ======================================================== -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Winto & Chelsya</title>
-    <!-- Import Font Elegan dari Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <meta name="theme-color" content="#111111">
+
+    <meta name="description"
+        content="Undangan Pernikahan Winto & Chelsya">
+
+    <meta name="keywords"
+        content="Wedding, Invitation, Winto, Chelsya, Pernikahan">
+
+    <meta property="og:title"
+        content="Wedding Invitation | Winto & Chelsya">
+
+    <meta property="og:description"
+        content="Kami mengundang Anda untuk hadir dalam acara pernikahan kami.">
+
+    <meta property="og:image"
+        content="assets/img/cover.webp">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:locale"
+        content="id_ID">
+
+    <title>
+        Winto & Chelsya | Wedding Invitation
+    </title>
+
+    <!-- =======================================================
+        FAVICON
+    ======================================================== -->
+
+    <link rel="icon"
+        href="assets/icon/favicon.png">
+
+    <!-- =======================================================
+        GOOGLE FONT
+    ======================================================== -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- =======================================================
+        ICON
+    ======================================================== -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- =======================================================
+        SWIPER
+    ======================================================== -->
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- =======================================================
+        AOS
+    ======================================================== -->
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
+    <!-- =======================================================
+        STYLE
+    ======================================================== -->
+
+    <link rel="stylesheet"
+        href="style.css">
+
 </head>
+
 <body>
 
-    <!-- Background Video / Image Animasi -->
-    <div class="bg-container">
-        <!-- Background HD -->
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop" alt="Background HD" class="bg-image">
-        <div class="overlay"></div>
+<!-- =======================================================
+LOADER
+======================================================= -->
+
+<div id="loader">
+
+    <div class="loader-wrapper">
+
+        <div class="loader-logo">
+
+            <span>W</span>
+
+            <span>&</span>
+
+            <span>C</span>
+
+        </div>
+
+        <div class="loader-line"></div>
+
+        <div class="loader-text">
+
+            Loading Invitation
+
+        </div>
+
     </div>
 
-    <!-- Konten Utama Undangan -->
-    <main class="invitation-container">
-        <section class="hero">
-            <div class="content fade-in-up">
-                <p class="subtitle">THE WEDDING OF</p>
-                <h1 class="title">WINTO & CHELSYA</h1>
-                
-                <div class="divider"></div>
-                
-                <p class="quote">
-                    "So they are no longer two, but one flesh. <br>
-                    Therefore what God has joined together, <br>
-                    let no one separate."
-                </p>
-                <p class="verse">Matthew 19 : 6</p>
-            </div>
-        </section>
-    </main>
+</div>
 
-    <script src="script.js"></script>
+<!-- =======================================================
+BACKGROUND
+======================================================= -->
+
+<div class="background-wrapper">
+
+    <div class="gradient-one"></div>
+
+    <div class="gradient-two"></div>
+
+    <div class="gradient-three"></div>
+
+    <canvas id="particles"></canvas>
+
+</div>
+
+<!-- =======================================================
+MUSIC
+======================================================= -->
+
+<audio
+id="backgroundMusic"
+loop>
+
+<source
+src="assets/music/music.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<!-- =======================================================
+MUSIC BUTTON
+======================================================= -->
+
+<button
+id="musicButton"
+class="music-button">
+
+<i class="fa-solid fa-music"></i>
+
+</button>
+
+<!-- =======================================================
+SCROLL PROGRESS
+======================================================= -->
+
+<div
+class="scroll-progress">
+
+<div
+class="scroll-progress-bar">
+
+</div>
+
+</div>
+
+<!-- =======================================================
+CURSOR
+======================================================= -->
+
+<div class="cursor-dot"></div>
+
+<div class="cursor-outline"></div>
+
+<!-- =======================================================
+OPENING
+======================================================= -->
+
+<section
+class="opening"
+id="opening">
+
+<div class="opening-overlay"></div>
+
+<div class="opening-background">
+
+<img
+src="assets/img/opening.webp"
+alt="Wedding">
+
+</div>
+
+<div class="opening-content">
+
+<h4>
+
+The Wedding Of
+
+</h4>
+
+<h1>
+
+Winto
+
+<span>&</span>
+
+Chelsya
+
+</h1>
+
+<p>
+
+Minggu,
+20 Desember 2026
+
+</p>
+
+<div
+class="divider"></div>
+
+<h5>
+
+Kepada Bapak/Ibu/Saudara/i
+
+</h5>
+
+<h2
+id="guestName">
+
+Tamu Undangan
+
+</h2>
+
+<button
+id="openInvitation">
+
+<i class="fa-solid fa-envelope-open"></i>
+
+Buka Undangan
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =======================================================
+MAIN
+======================================================= -->
+
+<main id="mainContent">
+
+<!-- HERO -->
+
+<section
+class="hero">
+
+<div class="hero-video">
+
+<video
+autoplay
+muted
+loop
+playsinline>
+
+<source
+src="assets/video/background.mp4"
+type="video/mp4">
+
+</video>
+
+</div>
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<p>
+
+WE ARE GETTING MARRIED
+
+</p>
+
+<h1>
+
+Winto
+
+<span>&</span>
+
+Chelsya
+
+</h1>
+
+<h3>
+
+Save The Date
+
+</h3>
+
+<div
+class="hero-date">
+
+20 • 12 • 2026
+
+</div>
+
+<a
+href="#couple"
+class="hero-button">
+
+Lihat Selengkapnya
+
+</a>
+
+</div>
+
+<div
+class="hero-scroll">
+
+<span></span>
+
+</div>
+
+</section>
+
+<!-- =======================================================
+COUPLE SECTION
+======================================================= -->
+
+<section
+id="couple"
+class="couple">
+
+<div class="section-title">
+
+<h5>
+
+Bride & Groom
+
+</h5>
+
+<h2>
+
+Assalamu'alaikum Wr. Wb.
+
+</h2>
+
+<p>
+
+Dengan memohon rahmat dan ridho Allah SWT,
+kami bermaksud menyelenggarakan
+acara pernikahan kami.
+
+</p>
+
+</div>
+                <div class="couple-wrapper">
+
+                    <!-- Groom -->
+
+                    <article class="person groom">
+
+                        <div class="person-image">
+
+                            <div class="image-border"></div>
+
+                            <img
+                                src="assets/img/groom.webp"
+                                alt="Winto">
+
+                        </div>
+
+                        <div class="person-content">
+
+                            <span class="label">
+
+                                Mempelai Pria
+
+                            </span>
+
+                            <h2>
+
+                                Winto
+
+                            </h2>
+
+                            <p>
+
+                                Putra Pertama dari
+
+                            </p>
+
+                            <h4>
+
+                                Bapak .................
+
+                            </h4>
+
+                            <span>&</span>
+
+                            <h4>
+
+                                Ibu .................
+
+                            </h4>
+
+                            <div class="social">
+
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <div class="heart-divider">
+
+                        ❤
+
+                    </div>
+
+                    <!-- Bride -->
+
+                    <article class="person bride">
+
+                        <div class="person-image">
+
+                            <div class="image-border"></div>
+
+                            <img
+                                src="assets/img/bride.webp"
+                                alt="Chelsya">
+
+                        </div>
+
+                        <div class="person-content">
+
+                            <span class="label">
+
+                                Mempelai Wanita
+
+                            </span>
+
+                            <h2>
+
+                                Chelsya
+
+                            </h2>
+
+                            <p>
+
+                                Putri Pertama dari
+
+                            </p>
+
+                            <h4>
+
+                                Bapak .................
+
+                            </h4>
+
+                            <span>&</span>
+
+                            <h4>
+
+                                Ibu .................
+
+                            </h4>
+
+                            <div class="social">
+
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 QUOTE
+            =========================================== -->
+
+            <section
+                class="quote">
+
+                <div class="quote-background">
+
+                    <img
+                        src="assets/img/quote.webp"
+                        alt="Quote">
+
+                </div>
+
+                <div class="quote-overlay"></div>
+
+                <div class="quote-content">
+
+                    <i class="fa-solid fa-quote-left"></i>
+
+                    <p>
+
+                        "Dan di antara tanda-tanda kebesaran-Nya ialah Dia
+                        menciptakan pasangan-pasangan untukmu dari jenismu
+                        sendiri agar kamu cenderung dan merasa tenteram
+                        kepadanya, dan Dia menjadikan di antaramu rasa kasih
+                        dan sayang."
+
+                    </p>
+
+                    <h4>
+
+                        QS. Ar-Rum : 21
+
+                    </h4>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 VIDEO STORY
+            =========================================== -->
+
+            <section
+                class="video-story"
+                id="storyVideo">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Our Journey
+
+                    </h5>
+
+                    <h2>
+
+                        Video Story
+
+                    </h2>
+
+                </div>
+
+                <div class="video-wrapper">
+
+                    <video
+                        controls
+                        preload="metadata"
+                        playsinline
+                        poster="assets/img/video-cover.webp">
+
+                        <source
+                            src="assets/video/story.mp4"
+                            type="video/mp4">
+
+                    </video>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 GALLERY
+            =========================================== -->
+
+            <section
+                class="gallery"
+                id="gallery">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Gallery
+
+                    </h5>
+
+                    <h2>
+
+                        Our Moments
+
+                    </h2>
+
+                </div>
+
+                <div class="gallery-grid">
+
+                    <figure class="gallery-item large">
+
+                        <img
+                            src="assets/img/gallery/gallery1.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                    <figure class="gallery-item">
+
+                        <img
+                            src="assets/img/gallery/gallery2.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                    <figure class="gallery-item">
+
+                        <img
+                            src="assets/img/gallery/gallery3.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                    <figure class="gallery-item tall">
+
+                        <img
+                            src="assets/img/gallery/gallery4.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                    <figure class="gallery-item">
+
+                        <img
+                            src="assets/img/gallery/gallery5.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                    <figure class="gallery-item wide">
+
+                        <img
+                            src="assets/img/gallery/gallery6.webp"
+                            alt="Gallery">
+
+                    </figure>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 LOVE STORY
+            =========================================== -->
+
+            <section
+                id="loveStory"
+                class="love-story">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Love Story
+
+                    </h5>
+
+                    <h2>
+
+                        Our Journey Begins
+
+                    </h2>
+
+                </div>
+
+                <div class="timeline">
+
+                    <!-- Timeline 1 -->
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-image">
+
+                            <img
+                                src="assets/img/story/story1.webp"
+                                alt="First Meet">
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span>
+
+                                2021
+
+                            </span>
+
+                            <h3>
+
+                                Pertama Bertemu
+
+                            </h3>
+
+                            <p>
+
+                                Cerita pertemuan pertama kalian ditulis di sini.
+                                Nanti bisa diganti sesuai kisah asli Winto dan
+                                Chelsya.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Timeline 2 -->
+
+                    <div class="timeline-item reverse">
+
+                        <div class="timeline-image">
+
+                            <img
+                                src="assets/img/story/story2.webp"
+                                alt="Relationship">
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span>
+
+                                2023
+
+                            </span>
+
+                            <h3>
+
+                                Menjalin Hubungan
+
+                            </h3>
+
+                            <p>
+
+                                Ceritakan perjalanan cinta hingga akhirnya
+                                memutuskan melangkah ke jenjang yang lebih serius.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+                                        <!-- Timeline 3 -->
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-image">
+
+                            <img
+                                src="assets/img/story/story3.webp"
+                                alt="Engagement">
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span>
+
+                                2025
+
+                            </span>
+
+                            <h3>
+
+                                Lamaran
+
+                            </h3>
+
+                            <p>
+
+                                Dengan penuh rasa syukur kami memutuskan untuk
+                                melangkah ke jenjang yang lebih serius melalui
+                                acara lamaran yang dihadiri keluarga besar dari
+                                kedua belah pihak.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Timeline 4 -->
+
+                    <div class="timeline-item reverse">
+
+                        <div class="timeline-image">
+
+                            <img
+                                src="assets/img/story/story4.webp"
+                                alt="Wedding">
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <span>
+
+                                2026
+
+                            </span>
+
+                            <h3>
+
+                                Hari Bahagia
+
+                            </h3>
+
+                            <p>
+
+                                Dengan memohon ridho Tuhan Yang Maha Esa,
+                                kami mengundang keluarga, sahabat, dan kerabat
+                                untuk menjadi bagian dari hari paling indah
+                                dalam perjalanan hidup kami.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 EVENT
+            =========================================== -->
+
+            <section
+                class="event"
+                id="event">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Wedding Event
+
+                    </h5>
+
+                    <h2>
+
+                        Save The Date
+
+                    </h2>
+
+                </div>
+
+                <div class="event-wrapper">
+
+                    <!-- Akad -->
+
+                    <article class="event-card">
+
+                        <div class="event-icon">
+
+                            <i class="fa-solid fa-ring"></i>
+
+                        </div>
+
+                        <h3>
+
+                            Akad Nikah
+
+                        </h3>
+
+                        <ul>
+
+                            <li>
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                                Minggu, 20 Desember 2026
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-clock"></i>
+
+                                09.00 WIB
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                Gereja / Lokasi Akad
+
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <!-- Resepsi -->
+
+                    <article class="event-card">
+
+                        <div class="event-icon">
+
+                            <i class="fa-solid fa-champagne-glasses"></i>
+
+                        </div>
+
+                        <h3>
+
+                            Resepsi
+
+                        </h3>
+
+                        <ul>
+
+                            <li>
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                                Minggu, 20 Desember 2026
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-clock"></i>
+
+                                18.30 WIB
+
+                            </li>
+
+                            <li>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                Ballroom / Gedung Resepsi
+
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 COUNTDOWN
+            =========================================== -->
+
+            <section
+                class="countdown"
+                id="countdown">
+
+                <div class="countdown-overlay"></div>
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Countdown
+
+                    </h5>
+
+                    <h2>
+
+                        Counting The Days
+
+                    </h2>
+
+                </div>
+
+                <div class="countdown-wrapper">
+
+                    <div class="count-box">
+
+                        <span id="days">
+
+                            00
+
+                        </span>
+
+                        <small>
+
+                            Hari
+
+                        </small>
+
+                    </div>
+
+                    <div class="count-box">
+
+                        <span id="hours">
+
+                            00
+
+                        </span>
+
+                        <small>
+
+                            Jam
+
+                        </small>
+
+                    </div>
+
+                    <div class="count-box">
+
+                        <span id="minutes">
+
+                            00
+
+                        </span>
+
+                        <small>
+
+                            Menit
+
+                        </small>
+
+                    </div>
+
+                    <div class="count-box">
+
+                        <span id="seconds">
+
+                            00
+
+                        </span>
+
+                        <small>
+
+                            Detik
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 LOCATION
+            =========================================== -->
+
+            <section
+                class="location"
+                id="location">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Location
+
+                    </h5>
+
+                    <h2>
+
+                        Wedding Venue
+
+                    </h2>
+
+                </div>
+
+                <div class="location-wrapper">
+
+                    <div class="location-card">
+
+                        <h3>
+
+                            Lokasi Acara
+
+                        </h3>
+
+                        <p>
+
+                            Silakan ganti alamat ini dengan lokasi sebenarnya.
+
+                        </p>
+
+                        <p>
+
+                            Jl. ............................................
+
+                        </p>
+
+                        <a
+                            href="#"
+                            class="map-button">
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            Buka Google Maps
+
+                        </a>
+
+                    </div>
+
+                    <div class="map-wrapper">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb="
+                            loading="lazy"
+                            allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade">
+
+                        </iframe>
+
+                    </div>
+
+                </div>
+
+            </section>
+                        <!-- ==========================================
+                 RSVP
+            =========================================== -->
+
+            <section
+                class="rsvp"
+                id="rsvp">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        RSVP
+
+                    </h5>
+
+                    <h2>
+
+                        Konfirmasi Kehadiran
+
+                    </h2>
+
+                    <p>
+
+                        Mohon konfirmasi kehadiran Anda agar kami dapat
+                        mempersiapkan acara dengan sebaik-baiknya.
+
+                    </p>
+
+                </div>
+
+                <form
+                    id="rsvpForm"
+                    class="rsvp-form">
+
+                    <div class="form-group">
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Nama Lengkap"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <select
+                            id="attendance">
+
+                            <option value="">
+
+                                Konfirmasi Kehadiran
+
+                            </option>
+
+                            <option value="hadir">
+
+                                Hadir
+
+                            </option>
+
+                            <option value="tidak">
+
+                                Tidak Hadir
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input
+                            type="number"
+                            id="guest"
+                            placeholder="Jumlah Tamu">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <textarea
+                            id="message"
+                            rows="5"
+                            placeholder="Ucapan & Doa"></textarea>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="submit-button">
+
+                        Kirim RSVP
+
+                    </button>
+
+                </form>
+
+            </section>
+
+            <!-- ==========================================
+                 WEDDING GIFT
+            =========================================== -->
+
+            <section
+                class="gift"
+                id="gift">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Wedding Gift
+
+                    </h5>
+
+                    <h2>
+
+                        Tanda Kasih
+
+                    </h2>
+
+                </div>
+
+                <div class="gift-wrapper">
+
+                    <div class="gift-card">
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                        <h3>
+
+                            Bank BCA
+
+                        </h3>
+
+                        <h4>
+
+                            1234567890
+
+                        </h4>
+
+                        <p>
+
+                            a.n Winto
+
+                        </p>
+
+                        <button
+                            class="copy-button"
+                            data-copy="1234567890">
+
+                            Salin Nomor Rekening
+
+                        </button>
+
+                    </div>
+
+                    <div class="gift-card">
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                        <h3>
+
+                            Bank Mandiri
+
+                        </h3>
+
+                        <h4>
+
+                            9876543210
+
+                        </h4>
+
+                        <p>
+
+                            a.n Chelsya
+
+                        </p>
+
+                        <button
+                            class="copy-button"
+                            data-copy="9876543210">
+
+                            Salin Nomor Rekening
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 WISHES
+            =========================================== -->
+
+            <section
+                class="wishes"
+                id="wishes">
+
+                <div class="section-title">
+
+                    <h5>
+
+                        Best Wishes
+
+                    </h5>
+
+                    <h2>
+
+                        Ucapan & Doa
+
+                    </h2>
+
+                </div>
+
+                <div
+                    id="wishContainer"
+                    class="wish-container">
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ==========================================
+             FLOATING MENU
+        =========================================== -->
+
+        <nav
+            class="floating-menu">
+
+            <a href="#opening">
+
+                <i class="fa-solid fa-house"></i>
+
+            </a>
+
+            <a href="#couple">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </a>
+
+            <a href="#gallery">
+
+                <i class="fa-solid fa-image"></i>
+
+            </a>
+
+            <a href="#event">
+
+                <i class="fa-solid fa-calendar"></i>
+
+            </a>
+
+            <a href="#location">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+            </a>
+
+        </nav>
+
+        <!-- ==========================================
+             LIGHTBOX
+        =========================================== -->
+
+        <div
+            id="lightbox"
+            class="lightbox">
+
+            <span
+                id="closeLightbox">
+
+                &times;
+
+            </span>
+
+            <img
+                id="lightboxImage"
+                src=""
+                alt="Gallery">
+
+        </div>
+
+        <!-- ==========================================
+             FOOTER
+        =========================================== -->
+
+        <footer>
+
+            <div class="footer-content">
+
+                <h2>
+
+                    Winto
+
+                    <span>&</span>
+
+                    Chelsya
+
+                </h2>
+
+                <p>
+
+                    Terima kasih atas doa, kasih,
+                    dan kehadiran Anda pada hari
+                    bahagia kami.
+
+                </p>
+
+                <div class="footer-divider"></div>
+
+                <p>
+
+                    Made With ❤️
+
+                </p>
+
+                <small>
+
+                    © 2026 Winto & Chelsya
+
+                </small>
+
+            </div>
+
+        </footer>
+
+        <!-- ==========================================
+             GSAP
+        =========================================== -->
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js">
+        </script>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js">
+        </script>
+
+        <!-- ==========================================
+             THREE JS
+        =========================================== -->
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+        </script>
+
+        <!-- ==========================================
+             LENIS
+        =========================================== -->
+
+        <script
+            src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js">
+        </script>
+
+        <!-- ==========================================
+             SWIPER
+        =========================================== -->
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+        </script>
+
+        <!-- ==========================================
+             AOS
+        =========================================== -->
+
+        <script
+            src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+        </script>
+
+        <!-- ==========================================
+             JAVASCRIPT
+        =========================================== -->
+
+        <script src="script.js"></script>
+
 </body>
+
 </html>
