@@ -2298,3 +2298,357 @@ t=>t.kill()
 /*=====================================================
 END PART 6
 ======================================================*/
+/*=====================================================
+    DYNAMIC GRADIENT BACKGROUND
+======================================================*/
+
+const gradientLayer = document.createElement("div");
+
+gradientLayer.id = "dynamicGradient";
+
+document.body.appendChild(gradientLayer);
+
+let gradientX = 50;
+let gradientY = 50;
+
+window.addEventListener("mousemove",(e)=>{
+
+    gradientX = (e.clientX/window.innerWidth)*100;
+
+    gradientY = (e.clientY/window.innerHeight)*100;
+
+});
+
+function animateGradient(){
+
+    gradientLayer.style.background =
+
+    `radial-gradient(circle at ${gradientX}% ${gradientY}%,
+
+    rgba(200,169,106,.14),
+
+    transparent 45%)`;
+
+    requestAnimationFrame(animateGradient);
+
+}
+
+animateGradient();
+
+/*=====================================================
+MAGNET BUTTON
+======================================================*/
+
+document.querySelectorAll(
+
+".hero-button,.submit-button,.copy-button"
+
+).forEach(button=>{
+
+button.addEventListener("mousemove",(e)=>{
+
+const rect=button.getBoundingClientRect();
+
+const x=e.clientX-rect.left-rect.width/2;
+
+const y=e.clientY-rect.top-rect.height/2;
+
+gsap.to(button,{
+
+x:x*.25,
+
+y:y*.25,
+
+duration:.3
+
+});
+
+});
+
+button.addEventListener("mouseleave",()=>{
+
+gsap.to(button,{
+
+x:0,
+
+y:0,
+
+duration:.4
+
+});
+
+});
+
+});
+
+/*=====================================================
+COUNTER ANIMATION
+======================================================*/
+
+document.querySelectorAll(
+
+"[data-counter]"
+
+).forEach(counter=>{
+
+let started=false;
+
+ScrollTrigger.create({
+
+trigger:counter,
+
+start:"top 85%",
+
+onEnter(){
+
+if(started)return;
+
+started=true;
+
+let current=0;
+
+const target=
+
+parseInt(counter.dataset.counter);
+
+const increment=
+
+Math.ceil(target/100);
+
+const timer=setInterval(()=>{
+
+current+=increment;
+
+if(current>=target){
+
+current=target;
+
+clearInterval(timer);
+
+}
+
+counter.innerHTML=current;
+
+},20);
+
+}
+
+});
+
+});
+
+/*=====================================================
+TEXT REVEAL
+======================================================*/
+
+document.querySelectorAll(
+
+".reveal-text"
+
+).forEach(text=>{
+
+gsap.from(text,{
+
+opacity:0,
+
+y:40,
+
+duration:1,
+
+scrollTrigger:{
+
+trigger:text,
+
+start:"top 88%"
+
+}
+
+});
+
+});
+
+/*=====================================================
+IMAGE ZOOM ON SCROLL
+======================================================*/
+
+document.querySelectorAll(
+
+".zoom-scroll"
+
+).forEach(image=>{
+
+gsap.to(image,{
+
+scale:1.15,
+
+ease:"none",
+
+scrollTrigger:{
+
+trigger:image,
+
+scrub:true
+
+}
+
+});
+
+});
+
+/*=====================================================
+AUTO HIDE NAVBAR
+======================================================*/
+
+let lastScroll=0;
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+const current=window.scrollY;
+
+const nav=document.querySelector("header");
+
+if(!nav)return;
+
+if(current>lastScroll && current>250){
+
+nav.style.transform="translateY(-120%)";
+
+}else{
+
+nav.style.transform="translateY(0)";
+
+}
+
+lastScroll=current;
+
+});
+
+/*=====================================================
+SECTION PROGRESS
+======================================================*/
+
+document.querySelectorAll("section").forEach(section=>{
+
+ScrollTrigger.create({
+
+trigger:section,
+
+start:"top center",
+
+end:"bottom center",
+
+onUpdate:self=>{
+
+section.style.setProperty(
+
+"--progress",
+
+self.progress
+
+);
+
+}
+
+});
+
+});
+
+/*=====================================================
+FLOATING ICONS
+======================================================*/
+
+const iconContainer=document.createElement("div");
+
+iconContainer.className="floating-icons";
+
+document.body.appendChild(iconContainer);
+
+const icons=[
+
+"❤",
+
+"✿",
+
+"❀",
+
+"✦",
+
+"✧"
+
+];
+
+setInterval(()=>{
+
+const icon=document.createElement("span");
+
+icon.innerHTML=
+
+icons[Math.floor(Math.random()*icons.length)];
+
+icon.style.left=Math.random()*100+"vw";
+
+icon.style.fontSize=
+
+16+Math.random()*20+"px";
+
+icon.style.animationDuration=
+
+5+Math.random()*5+"s";
+
+iconContainer.appendChild(icon);
+
+setTimeout(()=>{
+
+icon.remove();
+
+},12000);
+
+},900);
+
+/*=====================================================
+PERFORMANCE LOGGER
+======================================================*/
+
+let fpsFrames=0;
+
+let fpsLast=performance.now();
+
+function monitorFPS(){
+
+fpsFrames++;
+
+const now=performance.now();
+
+if(now-fpsLast>=1000){
+
+console.log(
+
+"FPS:",
+
+fpsFrames
+
+);
+
+fpsFrames=0;
+
+fpsLast=now;
+
+}
+
+requestAnimationFrame(
+
+monitorFPS
+
+);
+
+}
+
+monitorFPS();
+
+/*=====================================================
+END PART 7
+======================================================*/
