@@ -1147,3 +1147,1154 @@ document.addEventListener(
 );
 
 });
+/*=====================================================
+    PREMIUM CURSOR TRAIL
+======================================================*/
+
+const trailPoints = [];
+
+const trailCanvas = document.createElement("canvas");
+
+trailCanvas.id = "trailCanvas";
+
+trailCanvas.style.position = "fixed";
+trailCanvas.style.left = "0";
+trailCanvas.style.top = "0";
+trailCanvas.style.pointerEvents = "none";
+trailCanvas.style.zIndex = "9997";
+
+document.body.appendChild(trailCanvas);
+
+const ctx = trailCanvas.getContext("2d");
+
+function resizeTrail(){
+
+    trailCanvas.width = window.innerWidth;
+
+    trailCanvas.height = window.innerHeight;
+
+}
+
+resizeTrail();
+
+window.addEventListener("resize",resizeTrail);
+
+window.addEventListener("mousemove",(e)=>{
+
+    trailPoints.push({
+
+        x:e.clientX,
+
+        y:e.clientY,
+
+        alpha:1,
+
+        radius:12
+
+    });
+
+});
+
+function drawTrail(){
+
+    ctx.clearRect(
+
+        0,
+
+        0,
+
+        trailCanvas.width,
+
+        trailCanvas.height
+
+    );
+
+    for(let i=0;i<trailPoints.length;i++){
+
+        const p = trailPoints[i];
+
+        ctx.beginPath();
+
+        ctx.arc(
+
+            p.x,
+
+            p.y,
+
+            p.radius,
+
+            0,
+
+            Math.PI*2
+
+        );
+
+        ctx.fillStyle =
+
+        `rgba(200,169,106,${p.alpha})`;
+
+        ctx.fill();
+
+        p.alpha -= .018;
+
+        p.radius += .18;
+
+    }
+
+    while(
+
+        trailPoints.length &&
+
+        trailPoints[0].alpha <=0
+
+    ){
+
+        trailPoints.shift();
+
+    }
+
+    requestAnimationFrame(drawTrail);
+
+}
+
+drawTrail();
+
+/*=====================================================
+SCROLL PARALLAX
+======================================================*/
+
+window.addEventListener(
+
+    "scroll",
+
+    ()=>{
+
+        const scroll = window.scrollY;
+
+        document.querySelectorAll(
+
+            ".opening-background img,.quote-background img"
+
+        ).forEach((img)=>{
+
+            img.style.transform =
+
+            `translateY(${scroll*0.18}px) scale(1.12)`;
+
+        });
+
+    }
+
+);
+
+/*=====================================================
+FLOATING ELEMENT
+======================================================*/
+
+gsap.utils.toArray(
+
+".event-card,.gift-card,.person"
+
+).forEach((item)=>{
+
+    gsap.to(item,{
+
+        y:12,
+
+        repeat:-1,
+
+        yoyo:true,
+
+        duration:
+
+        2+Math.random()*2,
+
+        ease:"sine.inOut"
+
+    });
+
+});
+
+/*=====================================================
+BUTTON RIPPLE
+======================================================*/
+
+document.querySelectorAll(
+
+"button"
+
+).forEach((button)=>{
+
+button.addEventListener(
+
+"click",
+
+function(e){
+
+const circle=document.createElement("span");
+
+const diameter=
+
+Math.max(
+
+button.clientWidth,
+
+button.clientHeight
+
+);
+
+circle.style.width=
+
+circle.style.height=
+
+diameter+"px";
+
+circle.style.left=
+
+e.offsetX-diameter/2+"px";
+
+circle.style.top=
+
+e.offsetY-diameter/2+"px";
+
+circle.className="ripple";
+
+button.appendChild(circle);
+
+setTimeout(()=>{
+
+circle.remove();
+
+},700);
+
+});
+
+});
+
+/*=====================================================
+SECTION TRANSITION
+======================================================*/
+
+gsap.utils.toArray("section").forEach(
+
+(section)=>{
+
+ScrollTrigger.create({
+
+trigger:section,
+
+start:"top center",
+
+onEnter:()=>{
+
+gsap.to(section,{
+
+opacity:1,
+
+duration:.8
+
+});
+
+},
+
+onLeaveBack:()=>{
+
+gsap.to(section,{
+
+opacity:.96,
+
+duration:.4
+
+});
+
+}
+
+});
+
+});
+
+/*=====================================================
+TEXT SPLIT EFFECT
+======================================================*/
+
+document.querySelectorAll(
+
+".section-title h2"
+
+).forEach((title)=>{
+
+const letters=
+
+title.innerText.split("");
+
+title.innerHTML="";
+
+letters.forEach((letter)=>{
+
+const span=document.createElement("span");
+
+span.innerHTML=
+
+letter===" " ?
+
+"&nbsp;" :
+
+letter;
+
+span.style.display="inline-block";
+
+title.appendChild(span);
+
+});
+
+gsap.from(
+
+title.querySelectorAll("span"),
+
+{
+
+y:60,
+
+opacity:0,
+
+stagger:.03,
+
+duration:.8,
+
+scrollTrigger:{
+
+trigger:title,
+
+start:"top 85%"
+
+}
+
+}
+
+);
+
+});
+
+/*=====================================================
+IMAGE HOVER
+======================================================*/
+
+document.querySelectorAll(
+
+".gallery-item"
+
+).forEach((item)=>{
+
+item.addEventListener(
+
+"mousemove",
+
+(e)=>{
+
+const rect=item.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+item.style.transform=
+
+`perspective(800px)
+
+rotateX(${-(y-rect.height/2)/28}deg)
+
+rotateY(${(x-rect.width/2)/28}deg)
+
+scale(1.03)`;
+
+});
+
+item.addEventListener(
+
+"mouseleave",
+
+()=>{
+
+item.style.transform=
+
+"perspective(800px)
+
+rotateX(0)
+
+rotateY(0)
+
+scale(1)";
+
+});
+
+});
+
+/*=====================================================
+FPS LIMIT
+======================================================*/
+
+let lastFrame=0;
+
+const fps=60;
+
+const interval=1000/fps;
+
+function fpsLoop(time){
+
+if(time-lastFrame>interval){
+
+lastFrame=time;
+
+}
+
+requestAnimationFrame(fpsLoop);
+
+}
+
+requestAnimationFrame(fpsLoop);
+
+/*=====================================================
+DEVICE CHECK
+======================================================*/
+
+const mobile=
+
+window.innerWidth<768;
+
+if(mobile){
+
+document.body.classList.add(
+
+"mobile-device"
+
+);
+
+}
+
+/*=====================================================
+END PART 4
+======================================================*/
+/*=====================================================
+    SHOOTING STAR
+======================================================*/
+
+const shootingContainer = document.createElement("div");
+
+shootingContainer.className = "shooting-stars";
+
+document.body.appendChild(shootingContainer);
+
+function createStar(){
+
+    const star = document.createElement("span");
+
+    star.className = "shooting-star";
+
+    star.style.left = Math.random()*window.innerWidth+"px";
+
+    star.style.top = Math.random()*200+"px";
+
+    star.style.animationDuration =
+
+    1+Math.random()*2+"s";
+
+    shootingContainer.appendChild(star);
+
+    setTimeout(()=>{
+
+        star.remove();
+
+    },3500);
+
+}
+
+setInterval(createStar,2200);
+
+/*=====================================================
+SPARKLE
+======================================================*/
+
+const sparkleContainer=document.createElement("div");
+
+sparkleContainer.className="sparkle-container";
+
+document.body.appendChild(sparkleContainer);
+
+function sparkle(){
+
+    const s=document.createElement("div");
+
+    s.className="sparkle";
+
+    s.style.left=Math.random()*100+"vw";
+
+    s.style.top=Math.random()*100+"vh";
+
+    s.style.animationDuration=
+
+    1+Math.random()*2+"s";
+
+    sparkleContainer.appendChild(s);
+
+    setTimeout(()=>{
+
+        s.remove();
+
+    },3000);
+
+}
+
+setInterval(sparkle,400);
+
+/*=====================================================
+PETAL PARTICLE
+======================================================*/
+
+function createPetal(){
+
+    const petal=document.createElement("img");
+
+    petal.src="assets/img/petal.webp";
+
+    petal.className="petal";
+
+    petal.style.left=Math.random()*100+"vw";
+
+    petal.style.animationDuration=
+
+    8+Math.random()*8+"s";
+
+    petal.style.opacity=
+
+    .3+Math.random()*.4;
+
+    document.body.appendChild(petal);
+
+    setTimeout(()=>{
+
+        petal.remove();
+
+    },18000);
+
+}
+
+setInterval(createPetal,900);
+
+/*=====================================================
+AUDIO VISUALIZER
+======================================================*/
+
+const AudioContext=
+
+window.AudioContext||
+
+window.webkitAudioContext;
+
+const audioCtx=new AudioContext();
+
+const analyser=
+
+audioCtx.createAnalyser();
+
+analyser.fftSize=128;
+
+const source=
+
+audioCtx.createMediaElementSource(
+
+music
+
+);
+
+source.connect(analyser);
+
+analyser.connect(
+
+audioCtx.destination
+
+);
+
+const bufferLength=
+
+analyser.frequencyBinCount;
+
+const dataArray=
+
+new Uint8Array(bufferLength);
+
+const visualCanvas=
+
+document.createElement("canvas");
+
+visualCanvas.id="musicVisualizer";
+
+visualCanvas.width=320;
+
+visualCanvas.height=80;
+
+document.body.appendChild(
+
+visualCanvas
+
+);
+
+const vctx=
+
+visualCanvas.getContext("2d");
+
+function drawVisualizer(){
+
+requestAnimationFrame(
+
+drawVisualizer
+
+);
+
+analyser.getByteFrequencyData(
+
+dataArray
+
+);
+
+vctx.clearRect(
+
+0,
+
+0,
+
+320,
+
+80
+
+);
+
+for(let i=0;i<bufferLength;i++){
+
+const h=dataArray[i]/3;
+
+vctx.fillStyle=
+
+"#c8a96a";
+
+vctx.fillRect(
+
+i*5,
+
+80-h,
+
+3,
+
+h
+
+);
+
+}
+
+}
+
+drawVisualizer();
+
+/*=====================================================
+PAGE TRANSITION
+======================================================*/
+
+const transition=
+
+document.createElement("div");
+
+transition.className=
+
+"page-transition";
+
+document.body.appendChild(
+
+transition
+
+);
+
+window.addEventListener(
+
+"beforeunload",
+
+()=>{
+
+transition.classList.add(
+
+"active"
+
+);
+
+});
+
+/*=====================================================
+RANDOM GLOW
+======================================================*/
+
+setInterval(()=>{
+
+document.querySelectorAll(
+
+".gift-card,.event-card,.person"
+
+).forEach(card=>{
+
+gsap.to(card,{
+
+boxShadow:
+
+"0 0 45px rgba(200,169,106,.25)",
+
+duration:.8,
+
+yoyo:true,
+
+repeat:1
+
+});
+
+});
+
+},5000);
+
+/*=====================================================
+SCROLL DEPTH
+======================================================*/
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+const value=
+
+window.scrollY*.05;
+
+particles.rotation.z=
+
+value*.002;
+
+scene.rotation.y=
+
+value*.0003;
+
+});
+
+/*=====================================================
+AUTO PAUSE
+======================================================*/
+
+document.addEventListener(
+
+"visibilitychange",
+
+()=>{
+
+if(document.hidden){
+
+music.pause();
+
+}else{
+
+music.play().catch(()=>{});
+
+}
+
+});
+
+/*=====================================================
+PERFORMANCE OPTIMIZATION
+======================================================*/
+
+let ticking=false;
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+if(!ticking){
+
+requestAnimationFrame(()=>{
+
+ScrollTrigger.refresh();
+
+ticking=false;
+
+});
+
+ticking=true;
+
+}
+
+});
+
+/*=====================================================
+PRELOAD IMAGE
+======================================================*/
+
+const preloadImages=[
+
+"assets/img/gallery/gallery1.webp",
+
+"assets/img/gallery/gallery2.webp",
+
+"assets/img/gallery/gallery3.webp",
+
+"assets/img/gallery/gallery4.webp",
+
+"assets/img/gallery/gallery5.webp",
+
+"assets/img/gallery/gallery6.webp"
+
+];
+
+preloadImages.forEach(src=>{
+
+const img=new Image();
+
+img.src=src;
+
+});
+
+/*=====================================================
+END PART 5
+======================================================*/
+/*=====================================================
+    PARALLAX MULTI LAYER
+======================================================*/
+
+const parallaxLayers = document.querySelectorAll(
+
+"[data-parallax]"
+
+);
+
+window.addEventListener(
+
+"mousemove",
+
+(e)=>{
+
+const x=(e.clientX/window.innerWidth-.5);
+
+const y=(e.clientY/window.innerHeight-.5);
+
+parallaxLayers.forEach(layer=>{
+
+const speed=
+
+parseFloat(
+
+layer.dataset.parallax
+
+)||20;
+
+layer.style.transform=
+
+`translate3d(
+
+${x*speed}px,
+
+${y*speed}px,
+
+0)`;
+
+});
+
+});
+
+/*=====================================================
+SECTION FADE
+======================================================*/
+
+const fadeObserver=new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add(
+
+"show"
+
+);
+
+}
+
+});
+
+},
+
+{
+
+threshold:.25
+
+}
+
+);
+
+document.querySelectorAll(
+
+".fade"
+
+).forEach(el=>{
+
+fadeObserver.observe(el);
+
+});
+
+/*=====================================================
+IMAGE TILT PREMIUM
+======================================================*/
+
+document.querySelectorAll(
+
+".gallery-item"
+
+).forEach(card=>{
+
+card.addEventListener(
+
+"mousemove",
+
+(e)=>{
+
+const rect=
+
+card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateY=
+
+(x-rect.width/2)/18;
+
+const rotateX=
+
+(rect.height/2-y)/18;
+
+card.style.transform=
+
+`perspective(1200px)
+
+rotateX(${rotateX}deg)
+
+rotateY(${rotateY}deg)
+
+scale(1.04)`;
+
+});
+
+card.addEventListener(
+
+"mouseleave",
+
+()=>{
+
+card.style.transform=
+
+"perspective(1200px)
+
+rotateX(0deg)
+
+rotateY(0deg)
+
+scale(1)";
+
+});
+
+});
+
+/*=====================================================
+SCROLL INDICATOR TEXT
+======================================================*/
+
+const scrollHint=document.createElement("div");
+
+scrollHint.className="scroll-hint";
+
+scrollHint.innerHTML="Scroll";
+
+document.body.appendChild(scrollHint);
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+if(window.scrollY>200){
+
+scrollHint.style.opacity=0;
+
+}else{
+
+scrollHint.style.opacity=1;
+
+}
+
+});
+
+/*=====================================================
+BUTTON HOVER GLOW
+======================================================*/
+
+document.querySelectorAll(
+
+".hero-button,.submit-button,.copy-button"
+
+).forEach(btn=>{
+
+btn.addEventListener(
+
+"mouseenter",
+
+()=>{
+
+gsap.to(btn,{
+
+scale:1.05,
+
+boxShadow:
+
+"0 0 40px rgba(200,169,106,.45)",
+
+duration:.35
+
+});
+
+});
+
+btn.addEventListener(
+
+"mouseleave",
+
+()=>{
+
+gsap.to(btn,{
+
+scale:1,
+
+boxShadow:"none",
+
+duration:.35
+
+});
+
+});
+
+});
+
+/*=====================================================
+RANDOM SPARK
+======================================================*/
+
+function randomSpark(){
+
+const spark=document.createElement("div");
+
+spark.className="random-spark";
+
+spark.style.left=
+
+Math.random()*100+"vw";
+
+spark.style.top=
+
+Math.random()*100+"vh";
+
+document.body.appendChild(spark);
+
+setTimeout(()=>{
+
+spark.remove();
+
+},2500);
+
+}
+
+setInterval(randomSpark,1200);
+
+/*=====================================================
+AUTO CLOSE LIGHTBOX ESC
+======================================================*/
+
+document.addEventListener(
+
+"keydown",
+
+(e)=>{
+
+if(
+
+e.key==="Escape"
+
+){
+
+lightbox.classList.remove(
+
+"active"
+
+);
+
+}
+
+});
+
+/*=====================================================
+SCROLL TO TOP
+======================================================*/
+
+const topButton=document.createElement("button");
+
+topButton.className="scroll-top";
+
+topButton.innerHTML='<i class="fa-solid fa-arrow-up"></i>';
+
+document.body.appendChild(topButton);
+
+topButton.onclick=()=>{
+
+lenis.scrollTo(0);
+
+};
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+topButton.style.opacity=
+
+window.scrollY>600?1:0;
+
+});
+
+/*=====================================================
+MEMORY CLEANUP
+======================================================*/
+
+window.addEventListener(
+
+"beforeunload",
+
+()=>{
+
+ScrollTrigger.getAll().forEach(
+
+t=>t.kill()
+
+);
+
+});
+
+/*=====================================================
+END PART 6
+======================================================*/
